@@ -34,8 +34,10 @@ func (tree *BST) findClosestValue(target, closest int) int {
 }
 
 func absdiff(a, b int) int {
-	if a > b {
+	switch a < b {
+	case true:
+		return b - a
+	default:
 		return a - b
 	}
-	return b - a
 }
