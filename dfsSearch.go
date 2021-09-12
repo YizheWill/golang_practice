@@ -1,17 +1,26 @@
 package main
 
-type BST struct {
-	Value int
-	Left  *BST
-	Right *BST
+// Do not edit the class below except
+// for the depthFirstSearch method.
+// Feel free to add new properties
+// and methods to the class.
+type Node struct {
+	Name     string
+	Children []*Node
 }
 
-func dfsSearch(tree *BST, target int) bool {
-	if tree.Value == target {
-		return true
-	} else if tree.Left == nil && tree.Right == nil {
-		return false
-	} else {
-		return dfsSearch(tree.Left, target) || dfsSearch(tree.Right, target)
+func (n *Node) DepthFirstSearch(array []string) []string {
+	// Write your code here.
+	buildArray(n, &array)
+	return array
+}
+
+func buildArray(n *Node, array *[]string) {
+	if n == nil {
+		return
+	}
+	*array = append(*array, n.Name)
+	for _, node := range n.Children {
+		buildArray(node, array)
 	}
 }
